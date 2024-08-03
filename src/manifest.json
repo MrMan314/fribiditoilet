@@ -1,6 +1,6 @@
 {
-    "testId": "export-sample",
-    "name": "Export Sample",
+    "testId": "memery",
+    "name": "The Memery",
     "version": "1.0.0",
     "manifestVersion": 2,
     "requirements": {

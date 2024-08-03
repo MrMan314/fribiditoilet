@@ -31,40 +31,36 @@ import "@spectrum-web-components/styles/typography.css";
 import * as importUtils from "./importUtils.js";
 
 window.setupEventListeners = (AddOnSdk) => {
-  //It denotes initial value of parameters
-  let initialState = {
-    urls: [],
-    valueMimeType: "application/pdf",
-    rangeValue: "currentPage",
-    mimeTypeValue: "",
-  };
+	//It denotes initial value of parameters
+	let initialState = {
+		urls: [],
+		valueMimeType: "application/pdf",
+		rangeValue: "currentPage",
+		mimeTypeValue: "",
+	};
 
-  document
-    .getElementById("files-input")
-    .addEventListener("change", function (event) {
-      importUtils.inputChange(event, AddOnSdk);
-    });
+	document
+		.getElementById("generate-button")
+		.addEventListener("click", function (event) {
+			importUtils.addImportedImage(event, AddOnSdk);
+		});
 
-  document
-    .getElementById("add-button")
-    .addEventListener("click", addButtonClick);
+	document
+		.getElementById("add-button")
+		.addEventListener("click", addButtonClick);
 
-  async function addButtonClick() {
-    let error = document.getElementById("error");
-    error.style.display = "none";
-    var file = document.getElementById("files-input").files[0];
-    //Converting input file to blob in order to call import APIs
-    var blob = new Blob([file], { type: file.type });
-    if (file.type === "video/mp4") {
-      await AddOnSdk.app.document.addVideo(blob);
-    } else {
-      try {
-        await AddOnSdk.app.document.addImage(blob);
-      } catch (e) {
-        error.textContent = e.message;
-        error.style.display = "";
-        console.log(e);
-      }
-    }
-  }
+	async function addButtonClick() {
+		let error = document.getElementById("error");
+		error.style.display = "none";
+		//Converting input file to blob in order to call import APIs
+		const response = await fetch(document.getElementById("blob-uri").value);
+		const blob = await response.blob();
+		try {
+			await AddOnSdk.app.document.addImage(blob);
+		} catch (e) {
+			error.textContent = e.message;
+			error.style.display = "";
+			console.log(e);
+		}
+	}
 };

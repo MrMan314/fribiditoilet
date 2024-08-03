@@ -13,84 +13,91 @@ governing permissions and limitations under the License.
 */
 -->
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <div id="import" style="display: block">
-      <sp-button>
-        <label for="files-input">
-          Upload & Preview
-          <input
-            type="file"
-            id="files-input"
-            accept="application/json"
-            style="display: none; position: relative; z-index: 999"
-          />
-        </label>
-      </sp-button>
-      <sp-button
-        id="add-button"
-        treatment="fill"
-        variant="secondary"
-        for="files-input"
-        >Add to Express</sp-button
-      >
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<div id="import" style="display: block">
+			<input
+				type="text"
+				id="prompt-input"
+				style="position: relative; z-index: 999"
+				required
+			/>
+			<input 
+				type="hidden"
+				id="blob-uri"
+				style="display: none"
+			/>
+			<sp-button
+				id="generate-button"
+				treatment="fill"
+				variant="secondary"
+				for="prompt-input"
+				>Generate</sp-button
+			>
+			<sp-button
+				id="add-button"
+				treatment="fill"
+				variant="secondary"
+				for="prompt-input"
+				>Add to Express</sp-button
+			>
 
-      <div
-        style="
-          height: 275px;
-          width: 275px;
-          border: 1px solid;
-          border-color: lightgray;
-          text-align: center;
-          overflow-y: scroll;
-          display: block;
-          margin-top: 10%;
-        "
-        id="square-2"
-      >
-        <sp-field-label
-          style="padding-top: 45%; padding-bottom: 50%; display: block"
-          id="prev-2"
-          size="l"
-          >PREVIEW</sp-field-label
-        >
-      </div>
-    </div>
-    <br /><br />
-    <sp-toast
-      open
-      variant="negative"
-      style="
-        background-color: red;
-        color: white;
-        padding: 10px;
-        display: none;
-        margin-top: 7%;
-        align-self: baseline;
-      "
-      id="error"
-    >
-      Error
-    </sp-toast>
-    <script type="module" defer>
-      //Importing Add-On SDK
-      import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
+			<div
+				style="
+					height: 275px;
+					width: 275px;
+					border: 1px solid;
+					border-color: lightgray;
+					text-align: center;
+					overflow-y: scroll;
+					display: block;
+					margin-top: 10%;
+				"
+				id="square-2"
+			>
+				<sp-field-label
+					style="padding-top: 45%; padding-bottom: 50%; display: block"
+					id="prev-2"
+					size="l"
+					>PREVIEW</sp-field-label
+				>
+			</div>
+		</div>
+		<br /><br />
+		<sp-toast
+			open
+			variant="negative"
+			style="
+				background-color: red;
+				color: white;
+				padding: 10px;
+				display: none;
+				margin-top: 7%;
+				align-self: baseline;
+			"
+			id="error"
+		>
+			Error
+		</sp-toast>
+		<script type="module" defer>
+			//Importing Add-On SDK
+			import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 
-      try {
-        await AddOnSdk.ready;
-        console.log(AddOnSdk);
-      } catch (e) {
-        console.log(e);
-        console.log("SDK init failed!");
-      }
-      setupEventListeners(AddOnSdk);
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
-    <script src="vendors-node_modules_focus-visible_dist_focus-visible_js.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-  </body>
+			try {
+				await AddOnSdk.ready;
+				console.log(AddOnSdk);
+			} catch (e) {
+				console.log(e);
+				console.log("SDK init failed!");
+			}
+			setupEventListeners(AddOnSdk);
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+		<script src="vendors-node_modules_focus-visible_dist_focus-visible_js.bundle.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+	</body>
 </html>
