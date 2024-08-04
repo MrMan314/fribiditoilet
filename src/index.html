@@ -19,54 +19,42 @@ governing permissions and limitations under the License.
 	</head>
 	<body>
 		<div id="import" style="display: block">
-			<input
-				type="text"
-				id="prompt-input"
-				style="position: relative; z-index: 999"
-				required
-			/>
-			<input 
-				type="hidden"
-				id="blob-uri"
-				style="display: none"
-			/>
-			<sp-button
-				id="generate-button"
-				treatment="fill"
-				variant="secondary"
-				for="prompt-input"
-				>Generate</sp-button
-			>
-			<sp-button
-				id="add-button"
-				treatment="fill"
-				variant="secondary"
-				for="prompt-input"
-				>Add to Express</sp-button
-			>
-
+			<div class="input">
+				<sp-textfield
+					id="prompt-input"
+					style="position: relative; z-index: 999"
+					placeholder="Enter a meme idea!"
+					style="float: left"
+					></sp-textfield>
+				<sp-button
+					id="generate-button"
+					treatment="fill"
+					for="prompt-input"
+					style="float: right"
+					disabled
+					>Generate</sp-button>
+			</div>
 			<div
 				style="
-					height: 275px;
-					width: 275px;
+					height: 300px;
+					width: 300px;
 					border: 1px solid;
 					border-color: lightgray;
 					text-align: center;
-					overflow-y: scroll;
-					display: block;
-					margin-top: 10%;
+					overflow-y: none;
+					display: flex;
+					margin: auto;
+					margin-top: 1em;
+					background-image: url('/generate/static/wave.apng');
+					background-size: contain;
+					image-rendering: pixelated;
 				"
 				id="square-2"
 			>
-				<sp-field-label
-					style="padding-top: 45%; padding-bottom: 50%; display: block"
-					id="prev-2"
-					size="l"
-					>PREVIEW</sp-field-label
-				>
 			</div>
+			<sp-help-text size="s" id="tooltip" style="display:none">Drag & drop or click to insert.</sp-help-text>
 		</div>
-		<br /><br />
+		<br/><br/>
 		<sp-toast
 			open
 			variant="negative"

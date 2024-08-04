@@ -40,27 +40,21 @@ window.setupEventListeners = (AddOnSdk) => {
 	};
 
 	document
+		.getElementById("prompt-input")
+		.addEventListener("input", importUtils.updateFields);
+
+	document
+		.getElementById("prompt-input")
+		.addEventListener("keypress", (event) => {
+			if (event.key == "Enter") {
+				event.preventDefault();
+				document.getElementById("generate-button").click();
+			}
+		});
+
+	document
 		.getElementById("generate-button")
 		.addEventListener("click", function (event) {
 			importUtils.addImportedImage(event, AddOnSdk);
 		});
-
-	document
-		.getElementById("add-button")
-		.addEventListener("click", addButtonClick);
-
-	async function addButtonClick() {
-		let error = document.getElementById("error");
-		error.style.display = "none";
-		//Converting input file to blob in order to call import APIs
-		const response = await fetch(document.getElementById("blob-uri").value);
-		const blob = await response.blob();
-		try {
-			await AddOnSdk.app.document.addImage(blob);
-		} catch (e) {
-			error.textContent = e.message;
-			error.style.display = "";
-			console.log(e);
-		}
-	}
 };

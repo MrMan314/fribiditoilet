@@ -12,7 +12,20 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
+
+function setDisabled(disabled) {
+	document.getElementById("prompt-input").disabled = disabled;
+	document.getElementById("generate-button").disabled = disabled;
+	document.getElementById("tooltip").style.display = disabled ? "none" : "block";
+}
+
+export function updateFields() {
+	document.getElementById("generate-button").disabled = document.getElementById("prompt-input").value.trim().length < 1;
+}
+
 export function addImportedImage(event, AddOnSdk) {
+	setDisabled(true);
+	document.getElementById("square-2").style['background-image']='url("/generate/static/cook.apng")'
 	if (
 		document.getElementById("square-2").lastChild.localName === "img" ||
 		document.getElementById("square-2").lastChild.localName === "video"
@@ -21,7 +34,6 @@ export function addImportedImage(event, AddOnSdk) {
 			.getElementById("square-2")
 			.removeChild(document.getElementById("square-2").lastChild);
 	}
-	document.getElementById("prev-2").style.display = "none";
 	//Adding image to the preview box
 	const image = document.createElement("img");
 	fetch("https://localhost/generate?prompt=" + encodeURIComponent(document.getElementById("prompt-input").value), {
@@ -32,7 +44,6 @@ export function addImportedImage(event, AddOnSdk) {
 	}).then((response) => {
 		response.blob().then((data) => {
 			const imageURL = URL.createObjectURL(data);
-			document.getElementById("blob-uri").value = imageURL;
 			image.src = imageURL;
 			image.style.height = "100%";
 			image.style.width = "100%";
@@ -63,9 +74,9 @@ export function addImportedImage(event, AddOnSdk) {
 			} catch (error) {
 				console.log("Failed to enable DragToDocument:", error);
 			}
+			setDisabled(false);
 		});
 	});
-
 }
 
 function addImportedVideo(event, AddOnSdk) {

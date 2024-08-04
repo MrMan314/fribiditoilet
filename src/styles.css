@@ -13,3 +13,16 @@ governing permissions and limitations under the License.
 /* import the global stylesheets */
 @import '@spectrum-web-components/styles/all-medium-light.css';
 @import '@spectrum-web-components/styles/typography.css';
+
+#import {
+	align-items: center;
+	justify-items: center;
+	flex-direction: column;
+	display: flex;
+}
+
+.input {
+	width: 100%;
+	margin: auto;
+}
+
