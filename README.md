@@ -2,7 +2,7 @@
 ## About
 <details>
 	<summary>Spoiler Warning</summary>
-	![Me when the water fountain's broken. 🌊🚽😅](./images/toilet.png)
+	![Me when the water fountain's broken. 🌊🚽😅](images/toilet.png)
 </details>
 We believe that EVERYONE can be funny with the right tools. 
 Chef Memesicle cooks up some really cool and really funny memes! Just add him as an Adobe Express addon, and let your imagination run wild.
