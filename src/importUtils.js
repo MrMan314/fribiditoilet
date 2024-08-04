@@ -1,6 +1,3 @@
-import Replicate from "replicate";
-const replicate = new Replicate();
-
 /*
 Copyright 2023 Adobe. All rights reserved.
 This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -16,6 +13,8 @@ governing permissions and limitations under the License.
 function setDisabled(disabled) {
 	document.getElementById("prompt-input").disabled = disabled;
 	document.getElementById("generate-button").disabled = disabled;
+	document.getElementById("caption").disabled = disabled;
+	document.getElementById("brainrot").disabled = disabled;
 	document.getElementById("tooltip").style.display = disabled ? "none" : "block";
 }
 
@@ -25,6 +24,11 @@ export function updateFields() {
 
 export function addImportedImage(event, AddOnSdk) {
 	setDisabled(true);
+	if(document.getElementById("caption").checked) {
+		document.getElementById("square-2").style['height'] = "360px";
+	} else {
+		document.getElementById("square-2").style['height'] = "300px";
+	}
 	document.getElementById("square-2").style['background-image']='url("/generate/static/cook.apng")'
 	if (
 		document.getElementById("square-2").lastChild.localName === "img" ||
@@ -36,7 +40,7 @@ export function addImportedImage(event, AddOnSdk) {
 	}
 	//Adding image to the preview box
 	const image = document.createElement("img");
-	fetch("https://localhost/generate?prompt=" + encodeURIComponent(document.getElementById("prompt-input").value), {
+	fetch("https://localhost/generate?prompt=" + encodeURIComponent(document.getElementById("prompt-input").value) + "&text=" + document.getElementById("caption").checked + "&brainrot=" + document.getElementById("brainrot").checked, {
 		method: 'GET',
 		headers: {
 			Accept: "image/webp"
@@ -49,6 +53,7 @@ export function addImportedImage(event, AddOnSdk) {
 			image.style.width = "100%";
 			image.style.objectFit = "contain";
 			document.getElementById("square-2").appendChild(image);
+			document.getElementById("testlink").href=imageURL;
 			image.addEventListener("click", function () {
 				AddOnSdk.app.document.addImage(data);
 			});

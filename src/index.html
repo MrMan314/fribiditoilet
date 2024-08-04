@@ -34,9 +34,15 @@ governing permissions and limitations under the License.
 					disabled
 					>Generate</sp-button>
 			</div>
+			<div class="input">
+				<sp-field-group>
+					<sp-checkbox size="s" id="caption" checked>Caption</sp-checkbox>
+					<sp-checkbox size="s" id="brainrot">Brainrot</sp-checkbox>
+				</sp-field-group>
+			</div>
 			<div
 				style="
-					height: 300px;
+					height: 360px;
 					width: 300px;
 					border: 1px solid;
 					border-color: lightgray;
@@ -47,12 +53,17 @@ governing permissions and limitations under the License.
 					margin-top: 1em;
 					background-image: url('/generate/static/wave.apng');
 					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center center;
 					image-rendering: pixelated;
 				"
 				id="square-2"
 			>
 			</div>
-			<sp-help-text size="s" id="tooltip" style="display:none">Drag & drop or click to insert.</sp-help-text>
+			<div class="input" id="tooltip" style="display:none" >
+				<sp-help-text size="s" style="float: left">Drag & drop or click to insert.</sp-help-text>
+				<a id="testlink" style="float: right" download>Download</a>
+			</div>
 		</div>
 		<br/><br/>
 		<sp-toast

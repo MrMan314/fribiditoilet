@@ -28,6 +28,7 @@ import "@spectrum-web-components/number-field/sp-number-field.js";
 import "@spectrum-web-components/tabs/sp-tab.js";
 import "@spectrum-web-components/toast/sp-toast.js";
 import "@spectrum-web-components/styles/typography.css";
+import '@spectrum-web-components/checkbox/sp-checkbox.js';
 import * as importUtils from "./importUtils.js";
 
 window.setupEventListeners = (AddOnSdk) => {
