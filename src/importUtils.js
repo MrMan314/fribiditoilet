@@ -43,7 +43,7 @@ export function addImportedImage(event, AddOnSdk) {
 	fetch("https://localhost/generate?prompt=" + encodeURIComponent(document.getElementById("prompt-input").value) + "&text=" + document.getElementById("caption").checked + "&brainrot=" + document.getElementById("brainrot").checked, {
 		method: 'GET',
 		headers: {
-			Accept: "image/webp"
+			Accept: "image/jpeg"
 		}
 	}).then((response) => {
 		response.blob().then((data) => {
